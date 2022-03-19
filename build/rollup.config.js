@@ -17,6 +17,8 @@ const overrides = {
     ]
 }
 
+const deps = Object.keys(pks.dependencies);
+
 export { file, name }
 
 export default {
@@ -32,5 +34,7 @@ export default {
         vuePlugin(),
         css({ output: 'bundle.css' })
     ],
-    external: ['vue', 'lodash-es']
+    external(id) {
+        return /^vue/.test(id) || deps.some(k => new RegExp('^' + k).test(id))
+    }
 }
