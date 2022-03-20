@@ -2,7 +2,7 @@ import vuePlugin from 'rollup-plugin-vue';
 import css from 'rollup-plugin-css-only';
 import typescript from 'rollup-plugin-typescript2';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import { name } from '../package.json';
+import pks, { name } from '../package.json';
 const file = type => `dist/${name}.${type}.js`;
 
 // $ 不直接修改tsconfig在执行rollup进行替换
