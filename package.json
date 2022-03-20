@@ -9,6 +9,7 @@
     "url": "https://github.com/AKclown/ak-component-library"
   },
   "scripts": {
+    "preinstall": "npx only-allow yarn",
     "serve": "vue-cli-service serve",
     "build": "npm run clean && npm run build:esm && npm run build:umd",
     "test": "vue-cli-service test:unit",
@@ -18,9 +19,9 @@
     "clean": "rimraf ./dist",
     "prepublishOnly": "npm run lint && npm run test && npm run build"
   },
-  "husky":{
-    "hooks":{
-      "pre-commit":"npm run lint && npm run test"
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run test"
     }
   },
   "main": "dist/ak-component-library.umd.js",
@@ -51,6 +52,7 @@
     "babel-jest": "^27.5.1",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
+    "husky": "^4.3.8",
     "jest": "^27.0.5",
     "rimraf": "^3.0.2",
     "rollup-plugin-css-only": "^3.1.0",
