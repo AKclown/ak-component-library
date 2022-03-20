@@ -2,30 +2,39 @@
   "name": "ak-component-library",
   "version": "1.0.0",
   "private": false,
-  "main": "dist/ak-component-library.umd.js",
-  "module": "dist/ak-component-library.esm.js",
-  "types": "dist/index.d.ts",
+  "author": "AKclown",
+  "homepage": "https://github.com/AKclown/ak-component-library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AKclown/ak-component-library"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "npm run clean && npm run build:esm && npm run build:umd",
-    "lint": "vue-cli-service lint",
+    "test": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint --max-warnings 5",
     "build:esm": "rollup --config build/rollup.esm.config.js",
     "build:umd": "rollup --config build/rollup.umd.config.js",
     "clean": "rimraf ./dist",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run lint && npm run test && npm run build"
   },
+  "husky":{
+    "hooks":{
+      "pre-commit":"npm run lint && npm run test"
+    }
+  },
+  "main": "dist/ak-component-library.umd.js",
+  "module": "dist/ak-component-library.esm.js",
   "files": [
     "dist"
   ],
-  "peerDependencies": {
-    "vue": "^3.0.0"
-  },
   "dependencies": {
     "core-js": "^3.6.5",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.1.3",
+    "@types/jest": "^27.0.1",
     "@types/lodash-es": "^4.17.6",
     "@types/webpack-env": "^1.16.3",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
@@ -33,19 +42,29 @@
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
-    "@vue/cli-plugin-unit-jest": "^5.0.3",
+    "@vue/cli-plugin-unit-jest": "~5.0.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-typescript": "^5.0.2",
+    "@vue/test-utils": "^2.0.0-0",
+    "@vue/vue3-jest": "^27.0.0-alpha.1",
+    "babel-jest": "^27.5.1",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
+    "jest": "^27.0.5",
     "rimraf": "^3.0.2",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-typescript2": "^0.31.2",
     "rollup-plugin-vue": "^6.0.0",
+    "ts-jest": "^27.1.3",
     "tslib": "^2.3.1",
     "typescript": "^4.6.2",
     "vue": "^3.0.0",
+    "vue3-jest": "^27.0.0-alpha.1",
     "webpack-env": "^0.8.0"
-  }
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "types": "dist/index.d.ts"
 }
